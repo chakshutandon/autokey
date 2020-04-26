@@ -33,8 +33,15 @@ def main():
     key = args.key
     alphabet = english.ALPHABET
 
-    pt = transformation.decode_string_with_plaintext_autokey(ciphertext, key, alphabet)
-    ct = transformation.encode_string_with_plaintext_autokey(pt, key, alphabet)
+    decode_func = transformation.decode_string_with_repeated_key
+    encode_func = transformation.encode_string_with_repeated_key
+
+    if args.autokey:
+        decode_func = transformation.decode_string_with_plaintext_autokey
+        encode_func = transformation.encode_string_with_plaintext_autokey
+
+    pt = decode_func(ciphertext, key, alphabet)
+    ct = encode_func(pt, key, alphabet)
 
     assert(ct == ciphertext)
     assert(len(pt) == len(ciphertext))
