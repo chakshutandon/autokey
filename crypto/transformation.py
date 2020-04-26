@@ -1,13 +1,13 @@
 import warnings
 
-from . import util
+from . import utils
 
 def rotate_char(char, n, alphabet, forward=True):
     # Rotate a character char by n in the given alphabet
     if (not forward): n *= -1
-    idx = util.get_idx(char, alphabet)
-    new_idx = util.rotate_idx(idx, n, alphabet)
-    return util.get_chr(new_idx, alphabet)
+    idx = utils.get_idx(char, alphabet)
+    new_idx = utils.rotate_idx(idx, n, alphabet)
+    return utils.get_chr(new_idx, alphabet)
 
 def rotate_string_const(string, n, alphabet, forward=True):
     # Rotate a string forward by n in the given alphabet
@@ -18,7 +18,7 @@ def rotate_string_const(string, n, alphabet, forward=True):
 
 def __rotate_string_with_key(string, key, alphabet, forward=True):
     # Rotate a string by key in the given alphabet
-    key_idxs = util.string_to_idxs(key, alphabet)[:len(string)]
+    key_idxs = utils.string_to_idxs(key, alphabet)[:len(string)]
     func = lambda i, n: rotate_char(string[i], n, alphabet, forward)
     m = [func(i,n) for (i,n) in enumerate(key_idxs)]
     return "".join(m)
