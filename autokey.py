@@ -21,10 +21,11 @@ def parse_args():
     parser.add_argument("file", help="filepath to ciphertext")
     parser.add_argument("--autokey", action='store_true',
                         help="use autokey method for decryption")
-    parser.add_argument("key", type=str, help="key to use for decyption")
+    parser.add_argument("key", type=str, help="filepath to key")
 
     args = parser.parse_args()
     assert(os.path.isfile(args.file)), f"File {args.file} not found."
+    assert(os.path.isfile(args.key)), f"File {args.key} not found."
 
     return args
 
@@ -34,7 +35,7 @@ def main():
 
     ciphertext = get_file_contents(args.file)[0]
 
-    key = args.key
+    key = get_file_contents(args.key)[0]
     alphabet = english.ALPHABET
 
     decode_func = transformation.decode_string_with_repeated_key
