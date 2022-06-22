@@ -34,7 +34,7 @@ MarkupSafe==1.0
 mccabe==0.6.1
 more-itertools==8.2.0
 netifaces==0.10.4
-numpy==1.18.3
+numpy==1.22.0
 oauthlib==2.0.6
 packaging==20.3
 PAM==0.4.2
